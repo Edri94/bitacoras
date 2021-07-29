@@ -1,0 +1,7 @@
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\bin\Debug\BitacorasNET.dll.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\bin\Debug\BitacorasNET.dll
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\bin\Debug\BitacorasNET.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.csproj.CoreCompileInputs.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.dll
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.csproj.AssemblyReference.cache

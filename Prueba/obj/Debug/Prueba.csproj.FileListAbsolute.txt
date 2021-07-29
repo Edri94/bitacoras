@@ -1,0 +1,11 @@
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\bin\Debug\Prueba.exe.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\bin\Debug\Prueba.exe
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\bin\Debug\Prueba.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\bin\Debug\BitacorasNET.dll
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\bin\Debug\BitacorasNET.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\bin\Debug\BitacorasNET.dll.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\obj\Debug\Prueba.csproj.AssemblyReference.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\obj\Debug\Prueba.csproj.CoreCompileInputs.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\obj\Debug\Prueba.csproj.CopyComplete
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\obj\Debug\Prueba.exe
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Prueba\obj\Debug\Prueba.pdb
