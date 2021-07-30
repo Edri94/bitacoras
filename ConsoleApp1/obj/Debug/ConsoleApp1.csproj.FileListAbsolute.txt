@@ -1,0 +1,11 @@
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\BitacorasNET.dll
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\BitacorasNET.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\BitacorasNET.dll.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete

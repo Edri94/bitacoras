@@ -1,0 +1,14 @@
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\bin\Debug\Pruebas_Bitacoras.exe.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\bin\Debug\Pruebas_Bitacoras.exe
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\bin\Debug\Pruebas_Bitacoras.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\bin\Debug\BitacorasNET.dll
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\bin\Debug\BitacorasNET.pdb
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\bin\Debug\BitacorasNET.dll.config
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.csproj.AssemblyReference.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.Form1.resources
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.Properties.Resources.resources
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.csproj.GenerateResource.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.csproj.CoreCompileInputs.cache
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.csproj.CopyComplete
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.exe
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\Pruebas_Bitacoras\obj\Debug\Pruebas_Bitacoras.pdb

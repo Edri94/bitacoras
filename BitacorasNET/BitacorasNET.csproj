@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bitacora.cs" />
+    <Compile Include="Configuracion\DefaultValues\DefaultValuesConfig.cs" />
+    <Compile Include="Configuracion\DefaultValues\DefaultValuesInstanceCollection.cs" />
+    <Compile Include="Configuracion\DefaultValues\DefaultValuesInstanceElement.cs" />
+    <Compile Include="Configuracion\EscribeArchivoLOG\EscribeArchivoLOGConfig.cs" />
+    <Compile Include="Configuracion\EscribeArchivoLOG\EscribeArchivoLOGInstanceCollection.cs" />
+    <Compile Include="Configuracion\EscribeArchivoLOG\EscribeArchivoLOGInstanceElement.cs" />
+    <Compile Include="Configuracion\Headerih\HeaderihConfig.cs" />
+    <Compile Include="Configuracion\Headerih\HeaderihInstanceCollection.cs" />
+    <Compile Include="Configuracion\Headerih\HeaderihInstanceElement.cs" />
+    <Compile Include="Configuracion\Headerme\HeadermeConfig.cs" />
+    <Compile Include="Configuracion\Headerme\HeadermeInstanceCollection.cs" />
+    <Compile Include="Configuracion\Headerme\HeadermeInstanceElement.cs" />
+    <Compile Include="Configuracion\MqSeries\MqSeriesConfig.cs" />
+    <Compile Include="Configuracion\MqSeries\MqSeriesInstanceCollection.cs" />
+    <Compile Include="Configuracion\MqSeries\MqSeriesInstanceElement.cs" />
+    <Compile Include="Configuracion\ValorTk14\ValorTk14Config.cs" />
+    <Compile Include="Configuracion\ValorTk14\ValorTk14InstanceCollection.cs" />
+    <Compile Include="Configuracion\ValorTk14\ValorTk14InstanceElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

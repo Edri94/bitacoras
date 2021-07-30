@@ -1,10 +1,11 @@
-﻿using Prueba.Configuracion.EscribeArchivoLOG;
-using System.Configuration;
+﻿using System.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BitacorasNET;
+using Prueba.Configuracion.EscribeArchivoLOG;
 
 namespace Prueba
 {
@@ -12,14 +13,18 @@ namespace Prueba
     {
         static void Main(string[] args)
         {
+            //Bitacora bitacora = new Bitacora();
+
+            //bitacora.ProcesarBitacora();
+
             var escribeLogConfig = (EscribeArchivoLOGConfig)ConfigurationManager.GetSection("escribeArchivoLOG");
 
-            foreach(EscribeArchivoLOGInstanceElement instance in escribeLogConfig.EscribeArchivoLOGInstances)
+            foreach (EscribeArchivoLOGInstanceElement instance in escribeLogConfig.EscribeArchivoLOGInstances)
             {
-                Console.WriteLine("{0}  {1}", instance.Name, instance.Value);
+                Console.WriteLine(instance.Name);
+                Console.WriteLine(instance.Value);
+                Console.WriteLine("--------------------------");
             }
-
-            Console.ReadLine();
 
         }
     }

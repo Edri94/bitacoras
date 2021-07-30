@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BitacorasNET.Configuracion.EscribeArchivoLOG;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,37 +48,45 @@ namespace BitacorasNET
         private string Gs_MQQueueEscritura;   // MQQueue de Escritura
         public string gsAccesoActual;   // Fecha/Hora actual del sistema. La tomamos del servidor NT y no de SQL porque precisamente el
 
-        public void ProcesarBitacora(string strRutaIni)
+        public void ProcesarBitacora()
         {
             string[] parametros;
             string ls_MsgVal;
 
             try
             {
-                ArchivoIni = strRutaIni + @"\Bitacoras.ini";
-                ConfiguraFileLog("EscribeArchivoLOG", ArchivoIni);
+                //ArchivoIni = strRutaIni + @"\Bitacoras.ini";
+                ConfiguraFileLog("EscribeArchivoLOG");
 
 
             }
             catch(Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
         }
 
-        public void ConfiguraFileLog(string Ls_Tit, string Ls_Path)
+        public void ConfiguraFileLog(string Ls_Tit)
         {
-            string strlogFileName = ObtenParametroIni(Ls_Tit, "logFileName", "", Ls_Path);
-            string strlogFilePath = ObtenParametroIni(Ls_Tit, "logFilePath", "", Ls_Path);
+            string strlogFileName = ObtenParametroIni(Ls_Tit, "logFileName", "");
+            string strlogFilePath = ObtenParametroIni(Ls_Tit, "logFilePath", "");
             bool Mb_GrabaLog = true;
         }
 
-        public string ObtenParametroIni(string Ls_Grupo, string Ls_Variable, string Ls_Default, string Ls_AppPath)
+        public string ObtenParametroIni(string Ls_Grupo, string Ls_Variable, string Ls_Default)
         {
-            string Ls_Buffer;
-            int Li_Long;
+            string value = "";
+            var escribeLogConfig = (EscribeArchivoLOGConfig)ConfigurationManager.GetSection("escribeArchivoLOG");
 
-            return "";
+            foreach (EscribeArchivoLOGInstanceElement instance in escribeLogConfig.EscribeArchivoLOGInstances)
+            {
+                if (instance.Name == Ls_Variable)
+                {
+                    value = instance.Value;
+                }
+            }
+
+            return value;
         }
     }
 }
