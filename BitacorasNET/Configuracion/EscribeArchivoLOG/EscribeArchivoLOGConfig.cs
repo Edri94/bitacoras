@@ -14,5 +14,21 @@ namespace BitacorasNET.Configuracion.EscribeArchivoLOG
                 return (EscribeArchivoLOGInstanceCollection)this["instances"];
             }
         }
+
+        public string ObtenerParametro(string key)
+        {
+            string value = "";
+            var config = (EscribeArchivoLOGConfig)ConfigurationManager.GetSection("escribeArchivoLOG");
+
+            foreach (EscribeArchivoLOGInstanceElement instance in config.EscribeArchivoLOGInstances)
+            {
+                if (instance.Name == key)
+                {
+                    value = instance.Value;
+                }
+            }
+
+            return value;
+        }
     }
 }

@@ -13,5 +13,21 @@ namespace BitacorasNET.Configuracion.Headerih
                 return (HeaderihInstanceCollection)this["instances"];
             }
         }
+
+        public string ObtenerParametro(string key)
+        {
+            string value = "";
+            var config = (HeaderihConfig)ConfigurationManager.GetSection("escribeArchivoLOG");
+
+            foreach (HeaderihInstanceElement instance in config.HeaderihInstances)
+            {
+                if (instance.Name == key)
+                {
+                    value = instance.Value;
+                }
+            }
+
+            return value;
+        }
     }
 }

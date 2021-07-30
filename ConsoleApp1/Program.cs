@@ -14,7 +14,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("hola");
             Bitacora bitacora = new Bitacora();
-            bitacora.ProcesarBitacora();
+            bitacora.ProcesarBitacora("QMDCEDTK");
             Console.ReadLine();
         }
     }

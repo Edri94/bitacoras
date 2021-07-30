@@ -1,4 +1,8 @@
-﻿using BitacorasNET.Configuracion.EscribeArchivoLOG;
+﻿using BitacorasNET.Configuracion.DefaultValues;
+using BitacorasNET.Configuracion.EscribeArchivoLOG;
+using BitacorasNET.Configuracion.Headerih;
+using BitacorasNET.Configuracion.Headerme;
+using BitacorasNET.Configuracion.MqSeries;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -46,9 +50,9 @@ namespace BitacorasNET
 
         private string Gs_MQManager;   // MQManager de Escritura
         private string Gs_MQQueueEscritura;   // MQQueue de Escritura
-        public string gsAccesoActual;   // Fecha/Hora actual del sistema. La tomamos del servidor NT y no de SQL porque precisamente el
+        public DateTime gsAccesoActual;   // Fecha/Hora actual del sistema. La tomamos del servidor NT y no de SQL porque precisamente el
 
-        public void ProcesarBitacora()
+        public void ProcesarBitacora(string strParametros)
         {
             string[] parametros;
             string ls_MsgVal;
@@ -56,7 +60,25 @@ namespace BitacorasNET
             try
             {
                 //ArchivoIni = strRutaIni + @"\Bitacoras.ini";
-                ConfiguraFileLog("EscribeArchivoLOG");
+                ConfiguraFileLog("escribeArchivoLOG");
+                gsAccesoActual = DateTime.Now;
+
+                lsCommandLine = strParametros.Trim();
+
+                if(lsCommandLine.Equals("") != false)
+                {
+                    parametros = lsCommandLine.Split('-');
+
+                    Gs_MQManager = parametros[0].Trim();
+                    Gs_MQQueueEscritura = parametros[1].Trim();
+                    strFuncionSQL = parametros[3];
+                }
+                else
+                {
+                    ObtenerInfoMq();
+                }
+                   
+                
 
 
             }
@@ -68,25 +90,60 @@ namespace BitacorasNET
 
         public void ConfiguraFileLog(string Ls_Tit)
         {
-            string strlogFileName = ObtenParametroIni(Ls_Tit, "logFileName", "");
-            string strlogFilePath = ObtenParametroIni(Ls_Tit, "logFilePath", "");
+            EscribeArchivoLOGConfig escribeArchivoLOGConfig = new EscribeArchivoLOGConfig();
+
+            string strlogFileName = escribeArchivoLOGConfig.ObtenerParametro("logFileName");
+            string strlogFilePath = escribeArchivoLOGConfig.ObtenerParametro("logFilePath");
+
             bool Mb_GrabaLog = true;
         }
 
-        public string ObtenParametroIni(string Ls_Grupo, string Ls_Variable, string Ls_Default)
+        public void ObtenerInfoMq()
         {
-            string value = "";
-            var escribeLogConfig = (EscribeArchivoLOGConfig)ConfigurationManager.GetSection("escribeArchivoLOG");
+            MqSeriesConfig mqSeriesConfig = new MqSeriesConfig();
 
-            foreach (EscribeArchivoLOGInstanceElement instance in escribeLogConfig.EscribeArchivoLOGInstances)
-            {
-                if (instance.Name == Ls_Variable)
-                {
-                    value = instance.Value;
-                }
-            }
-
-            return value;
+            Gs_MQManager = mqSeriesConfig.ObtenerParametro("MQManager");
+            Gs_MQQueueEscritura = mqSeriesConfig.ObtenerParametro("MQEscritura");
+            strFuncionSQL = mqSeriesConfig.ObtenerParametro("FGBitacora");
         }
+
+        public void ConfiguraHeader_IH_ME()
+        {
+            HeaderihConfig headerihConfig = new HeaderihConfig();
+
+            strFuncionHost = headerihConfig.ObtenerParametro("PRIMERVALOR");
+            strHeaderTagIni = headerihConfig.ObtenerParametro("IHTAGINI");
+            strIDProtocol = headerihConfig.ObtenerParametro("IDPROTOCOL");
+            strLogical = headerihConfig.ObtenerParametro("Logical");
+            strAccount = headerihConfig.ObtenerParametro("ACCOUNT");
+            strUser = headerihConfig.ObtenerParametro("User");
+            strSeqNumber = headerihConfig.ObtenerParametro("SEQNUMBER");
+            strTXCode = headerihConfig.ObtenerParametro("TXCODE");
+            strUserOption = headerihConfig.ObtenerParametro("USEROPT");
+            strCommit = headerihConfig.ObtenerParametro("Commit");
+            strMsgType = headerihConfig.ObtenerParametro("MSGTYPE");
+            strProcessType = headerihConfig.ObtenerParametro("PROCESSTYPE");
+            strChannel = headerihConfig.ObtenerParametro("CHANNEL");
+            strPreFormat = headerihConfig.ObtenerParametro("PREFORMATIND");
+            strLenguage = headerihConfig.ObtenerParametro("LANGUAGE");
+            strHeaderTagEnd = headerihConfig.ObtenerParametro("IHTAGEND");
+
+            HeadermeConfig headermeConfig = new HeadermeConfig();
+
+            strMETAGINI = headermeConfig.ObtenerParametro("METAGINI");
+            strMsgTypeCole = headermeConfig.ObtenerParametro("TIPOMSG");
+            strMETAGEND = headermeConfig.ObtenerParametro("METAGEND");
+
+            DefaultValuesConfig defaultValuesConfig = new DefaultValuesConfig();
+
+            strColectorMaxLeng = defaultValuesConfig.ObtenerParametro("COLMAXLENG");
+            strMsgMaxLeng = defaultValuesConfig.ObtenerParametro("MSGMAXLENG");
+            strPS9MaxLeng = defaultValuesConfig.ObtenerParametro("PS9MAXLENG");
+            strReplyToMQ = defaultValuesConfig.ObtenerParametro("ReplyToQueue");
+            strRndLogTerm = defaultValuesConfig.ObtenerParametro("RandomLogTerm");
+        }
+
+
+
     }
 }
