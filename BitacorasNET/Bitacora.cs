@@ -52,10 +52,12 @@ namespace BitacorasNET
         private string Gs_MQQueueEscritura;   // MQQueue de Escritura
         public DateTime gsAccesoActual;   // Fecha/Hora actual del sistema. La tomamos del servidor NT y no de SQL porque precisamente el
 
+        MqSeries mqSeries = new MqSeries();
+
         public void ProcesarBitacora(string strParametros)
         {
             string[] parametros;
-            string ls_MsgVal;
+            string ls_MsgVal = "";
 
             try
             {
@@ -77,8 +79,15 @@ namespace BitacorasNET
                 {
                     ObtenerInfoMq();
                 }
-                   
-                
+
+
+                ConfiguraHeader_IH_ME();
+
+                if(ValidaInfoMQ(ls_MsgVal))
+                {
+                    mqSeries.Escribe("Se presentó un error en la función ValidaInfoMQ invocada desde el MAIN: " + ls_MsgVal + ". Función SQL: " + strFuncionSQL);
+                    return;
+                }
 
 
             }
@@ -141,9 +150,54 @@ namespace BitacorasNET
             strPS9MaxLeng = defaultValuesConfig.ObtenerParametro("PS9MAXLENG");
             strReplyToMQ = defaultValuesConfig.ObtenerParametro("ReplyToQueue");
             strRndLogTerm = defaultValuesConfig.ObtenerParametro("RandomLogTerm");
+
+            
+
         }
 
+        private bool ValidaInfoMQ(string ps_MsgVal)
+        {
+            bool validaInfoMQ = false;
+            string ls_msg = "";
 
+            if (Gs_MQManager.Trim() == "")
+            {
+                ls_msg = ls_msg + (ls_msg.Length > 0 ? ((char)13).ToString() : "") + "Falta MQ Manager envio.";
+            }
+            if (Gs_MQQueueEscritura.Trim() == "")
+            {
+                ls_msg = ls_msg + (ls_msg.Length > 0 ? ((char)13).ToString() : "") + "Falta MQ Queue envio.";
+            }
+            if (ls_msg.Trim() == "")
+            {
+                validaInfoMQ = true;
+            }
 
-    }
+            ps_MsgVal = ls_msg;
+
+            return validaInfoMQ;
+            
+        }
+
+        public void ProcesoBDtoMQQUEUE()
+        {
+            string Ls_MensajeMQ;      
+            string Ls_MsgColector; 
+
+            string sFechaEnvio;
+            string sEnvioConse;
+            string sMensajeEnvio;
+
+            try
+            {
+                mqSeries.Escribe("");
+                mqSeries.Escribe("Inicia envío de mensajes a Host: " + gsAccesoActual + " Función SQL: " + strFuncionSQL);
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+        }
+    } 
 }
