@@ -3,12 +3,9 @@ using BitacorasNET.Configuracion.EscribeArchivoLOG;
 using BitacorasNET.Configuracion.Headerih;
 using BitacorasNET.Configuracion.Headerme;
 using BitacorasNET.Configuracion.MqSeries;
+using BitacorasNET.Configuracion.ValorTk14;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BitacorasNET
 {
@@ -52,7 +49,17 @@ namespace BitacorasNET
         private string Gs_MQQueueEscritura;   // MQQueue de Escritura
         public DateTime gsAccesoActual;   // Fecha/Hora actual del sistema. La tomamos del servidor NT y no de SQL porque precisamente el
 
-        MqSeries mqSeries = new MqSeries();
+        MqSeries mqSeries;
+        MqSeriesConfig mqSeriesConfig;
+        ValorTk14Config valorTk14Config;
+
+
+        public Bitacora()
+        {
+            mqSeries = new MqSeries();
+            mqSeriesConfig = new MqSeriesConfig();
+            valorTk14Config = new ValorTk14Config();
+        }
 
         public void ProcesarBitacora(string strParametros)
         {
@@ -109,7 +116,7 @@ namespace BitacorasNET
 
         public void ObtenerInfoMq()
         {
-            MqSeriesConfig mqSeriesConfig = new MqSeriesConfig();
+            
 
             Gs_MQManager = mqSeriesConfig.ObtenerParametro("MQManager");
             Gs_MQQueueEscritura = mqSeriesConfig.ObtenerParametro("MQEscritura");
@@ -192,6 +199,28 @@ namespace BitacorasNET
             {
                 mqSeries.Escribe("");
                 mqSeries.Escribe("Inicia envío de mensajes a Host: " + gsAccesoActual + " Función SQL: " + strFuncionSQL);
+
+                if(mqSeries.MQConectar("", "") == "")
+                {
+                    mqSeries.blnConectado = true;
+                }
+                else
+                {
+                    mqSeries.Escribe("Fallo conexión MQ-Manager " + Gs_MQManager + ": " + mqSeries.queueManager.ReasonCode + " - " + mqSeries.queueManager.ReasonName);
+                }
+
+                sFechaEnvio = (DateTime.Now.ToString("yyyymmddhhnnss") + new String(' ', 36)).Substring(0, 26);
+                sEnvioConse = (valorTk14Config.ObtenerParametro("TKCONSECUTIVO") + new String(' ', 1)).Substring(0,1);
+
+                Ls_MsgColector = (strFuncionSQL + new String(' ', 8)).Substring(0, 8);
+  
+
+                //If MQConectar(mqSession, Gs_MQManager, mqManager) Then
+                //    blnConectado = True
+                //Else
+                //    Escribe "Fallo conexión MQ-Manager " & Gs_MQManager & ": " & mqSession.ReasonCode & " - " & mqSession.ReasonName
+                //    Exit Function
+                //End If
             }
             catch(Exception ex)
             {

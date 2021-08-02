@@ -61,6 +61,7 @@
     <Compile Include="Configuracion\ValorTk14\ValorTk14Config.cs" />
     <Compile Include="Configuracion\ValorTk14\ValorTk14InstanceCollection.cs" />
     <Compile Include="Configuracion\ValorTk14\ValorTk14InstanceElement.cs" />
+    <Compile Include="MqSeries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
