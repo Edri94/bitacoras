@@ -61,7 +61,7 @@ namespace BitacorasNET
             valorTk14Config = new ValorTk14Config();
         }
 
-        public void ProcesarBitacora(string strParametros)
+        private void ProcesarBitacora(string strParametros)
         {
             string[] parametros;
             string ls_MsgVal = "";
@@ -104,7 +104,7 @@ namespace BitacorasNET
             }
         }
 
-        public void ConfiguraFileLog(string Ls_Tit)
+        private void ConfiguraFileLog(string Ls_Tit)
         {
             EscribeArchivoLOGConfig escribeArchivoLOGConfig = new EscribeArchivoLOGConfig();
 
@@ -114,7 +114,7 @@ namespace BitacorasNET
             bool Mb_GrabaLog = true;
         }
 
-        public void ObtenerInfoMq()
+        private void ObtenerInfoMq()
         {
             
 
@@ -123,7 +123,7 @@ namespace BitacorasNET
             strFuncionSQL = mqSeriesConfig.ObtenerParametro("FGBitacora");
         }
 
-        public void ConfiguraHeader_IH_ME()
+        private void ConfiguraHeader_IH_ME()
         {
             HeaderihConfig headerihConfig = new HeaderihConfig();
 
@@ -186,7 +186,7 @@ namespace BitacorasNET
             
         }
 
-        public void ProcesoBDtoMQQUEUE()
+        private void ProcesoBDtoMQQUEUE()
         {
             string Ls_MensajeMQ;      
             string Ls_MsgColector; 
@@ -209,10 +209,15 @@ namespace BitacorasNET
                     mqSeries.Escribe("Fallo conexión MQ-Manager " + Gs_MQManager + ": " + mqSeries.queueManager.ReasonCode + " - " + mqSeries.queueManager.ReasonName);
                 }
 
-                sFechaEnvio = (DateTime.Now.ToString("yyyymmddhhnnss") + new String(' ', 36)).Substring(0, 26);
-                sEnvioConse = (valorTk14Config.ObtenerParametro("TKCONSECUTIVO") + new String(' ', 1)).Substring(0,1);
+                sFechaEnvio = Left(DateTime.Now.ToString("yyyymmddhhnnss") + Space(26),26);
+                sEnvioConse = Left(valorTk14Config.ObtenerParametro("TKCONSECUTIVO") + Space(1),1);
 
                 Ls_MsgColector = (strFuncionSQL + new String(' ', 8)).Substring(0, 8);
+
+                if(Ls_MsgColector.Length >0)
+                {
+                    //Ls_MensajeMQ = 
+                }
   
 
                 //If MQConectar(mqSession, Gs_MQManager, mqManager) Then
@@ -228,5 +233,72 @@ namespace BitacorasNET
             }
 
         }
-    } 
+
+        private string ASTA_ENTRADA(string strMsgColector)
+        {
+            string ASTA_ENTRADA;
+
+            string ls_TempColectorMsg;
+            string ls_BloqueME;
+            int ln_longCOLECTOR;
+            int ln_AccTerminal;
+
+            try
+            {
+                ls_TempColectorMsg = strMsgColector;
+
+                if (ls_TempColectorMsg.Length > Int32.Parse(strColectorMaxLeng))
+                {
+                    mqSeries.Escribe("La longitud del colector supera el maximo permitido");
+                    //GoTo ErrorASTA
+                }
+
+                ls_BloqueME = Left((strMETAGINI + Space(4)).Trim(), 4);
+                ls_BloqueME = ls_BloqueME + Right("0000" + (ls_TempColectorMsg.Length.ToString()), 4);
+                ls_BloqueME = ls_BloqueME + Left((strMsgTypeCole.Trim() + Space(5)),5);
+                ls_BloqueME = ls_BloqueME + ls_TempColectorMsg;
+                ls_BloqueME = ls_BloqueME + Left(strMETAGEND + Space(5),5);
+
+                if (ls_BloqueME.Length > Int32.Parse(strMsgMaxLeng))
+                {
+                    mqSeries.Escribe("La longitud del Bloque ME supera el maximo permitido");
+                    //GoTo ErrorASTA
+                }
+
+                ASTA_ENTRADA = Left(strFuncionHost.Trim() + Space(8), 8);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strHeaderTagIni.Trim() + Space(4), 4);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strIDProtocol.Trim() + Space(2), 2);
+
+                if(strRndLogTerm.Trim().Equals("1"))
+                {
+                    ln_AccTerminal = 0;
+                    do
+                    {
+
+                    } while(ln_AccTerminal > 0 && ln_AccTerminal < 2000);
+                }
+
+                return ASTA_ENTRADA;
+            }
+            catch (Exception ex)
+            {
+                mqSeries.Escribe(ex.Message);
+                return ex.Message;
+            }
+        }
+        public string Space(int veces)
+        {
+            return new String(' ', veces);
+        }
+
+        public string Left(string cadena, int posiciones)
+        {
+            return cadena.Substring(0, posiciones);
+        }
+
+        public string Right(string cadena, int posiciones)
+        {
+            return cadena.Substring((cadena.Length - posiciones), posiciones);
+        }
+    }
 }
