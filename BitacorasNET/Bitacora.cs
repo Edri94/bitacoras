@@ -274,9 +274,43 @@ namespace BitacorasNET
                     ln_AccTerminal = 0;
                     do
                     {
+                        //new  Random(DateTime.Now.Second);
+                        var Rnd = new Random(DateTime.Now.Second * 1000);
+                        ln_AccTerminal = Rnd.Next();
 
                     } while(ln_AccTerminal > 0 && ln_AccTerminal < 2000);
+
+                    ASTA_ENTRADA = ASTA_ENTRADA + Left((ln_AccTerminal.ToString("D4") + Space(8)),8);
                 }
+                else
+                {
+                    ASTA_ENTRADA = ASTA_ENTRADA + Left(strAccount.Trim() + Space(8), 8);
+                }
+
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strAccount.Trim() + Space(8), 8);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strUser.Trim() + Space(8), 8);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strSeqNumber.Trim() + Space(8), 8);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strTXCode.Trim() + Space(8), 8);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strUserOption.Trim() + Space(8), 8);
+
+                ln_longCOLECTOR = 65 + ls_BloqueME.Length;
+
+                if(ln_longCOLECTOR > Int32.Parse(strPS9MaxLeng.Trim()))
+                {
+                    mqSeries.Escribe("La longitud del Layout PS9 supera el maximo permitido");
+                    //GoTo ErrorASTA
+                }
+
+                ASTA_ENTRADA = ASTA_ENTRADA + Right("00000" + ln_longCOLECTOR.ToString(), 5);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strCommit.Trim() + Space(1), 1);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strMsgType.Trim() + Space(1), 1);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strProcessType.Trim() + Space(1), 1);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strChannel.Trim() + Space(2), 2);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strPreFormat.Trim() + Space(1), 1);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strLenguage.Trim() + Space(1), 1);
+                ASTA_ENTRADA = ASTA_ENTRADA + Left(strHeaderTagEnd.Trim() + Space(5), 5);
+                ASTA_ENTRADA = ASTA_ENTRADA + ls_BloqueME;
+
 
                 return ASTA_ENTRADA;
             }

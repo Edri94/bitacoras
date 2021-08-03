@@ -12,10 +12,14 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
-            Console.WriteLine("hola");
-            Bitacora bitacora = new Bitacora();
-            bitacora.ProcesarBitacora("QMDCEDTK");
-            Console.ReadLine();
+            //Console.WriteLine("hola");
+            //Bitacora bitacora = new Bitacora();
+            //bitacora.ProcesarBitacora("QMDCEDTK");
+            //Console.ReadLine();
+            //string algo;
+            //algo = (5).ToString("D4");
+            //Console.WriteLine(algo);
+            //Console.ReadLine();
         }
     }
 }

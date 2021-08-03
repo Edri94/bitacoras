@@ -9,3 +9,4 @@ C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\BitacorasNET.dll.config
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\ConsoleApp1\bin\Debug\amqmdnet.dll
