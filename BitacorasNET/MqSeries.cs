@@ -19,7 +19,7 @@ namespace BitacorasNET
 
 
         // Enumeración para las opciones de abrir la cola
-        enum MQOPEN
+        public enum MQOPEN
         {
             MQOO_INPUT_AS_Q_DEF = 0x1,
             MQOO_INPUT_SHARED = 0x2,
@@ -148,6 +148,46 @@ namespace BitacorasNET
             {
                 Escribe(ex.Message);
                 return MQDesconectar;
+            }
+        }
+
+        public bool MQEnviarMsg(MQQueueManager objMQManager, string strMQCola, MQQueue objMQCola, MQMessage objMQMensaje, string ls_mensaje, string Ls_ReplayMQQueue, string strMensajeID = "")
+        {
+            MQPutMessageOptions mqsMQOpciones;
+            string strMensaje;
+
+            try
+            {
+                //Set mqsMQOpciones = objMQConexion.AccessPutMessageOptions
+                //mqsMQOpciones.Options = mqsMQOpciones.Options Or MQPMO_NO_SYNCPOINT
+                //Set objMQMensaje = objMQConexion.AccessMessage
+
+                if(MQAbrirCola(objMQManager, strMQCola, objMQCola, MQOPEN.MQOO_OUTPUT))
+                {
+
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        private bool MQAbrirCola(MQQueueManager objMQManager, string strMQCola, MQQueue objMQCola, MQOPEN lngOpciones)
+        {
+            try
+            {
+                ////' Se accesa la cola ya sea para leer o escribir
+                //Set objMQCola = objMQManager.AccessQueue(strMQCola, lngOpciones, mqManager.Name, "AMQ.*")
+                //MQAbrirCola = True
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw;
             }
         }
 

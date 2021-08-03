@@ -4,6 +4,6 @@ C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\bin\Debug
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.csproj.CoreCompileInputs.cache
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.dll
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.pdb
-C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.csproj.AssemblyReference.cache
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\bin\Debug\amqmdnet.dll
 C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.csproj.CopyComplete
+C:\Users\MI05332\Documents\practicas\c sharp\BitacorasNET\BitacorasNET\obj\Debug\BitacorasNET.csproj.AssemblyReference.cache

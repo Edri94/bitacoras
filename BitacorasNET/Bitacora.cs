@@ -96,6 +96,10 @@ namespace BitacorasNET
                     return;
                 }
 
+                ProcesoBDtoMQQUEUE();
+
+                mqSeries.Escribe("Termina proceso bitácoras. Función SQL: " + strFuncionSQL);
+
 
             }
             catch(Exception ex)
@@ -193,7 +197,7 @@ namespace BitacorasNET
 
             string sFechaEnvio;
             string sEnvioConse;
-            string sMensajeEnvio;
+            string sMensajeEnvio ="";
 
             try
             {
@@ -216,8 +220,40 @@ namespace BitacorasNET
 
                 if(Ls_MsgColector.Length >0)
                 {
-                    //Ls_MensajeMQ = 
+                    Ls_MensajeMQ = ASTA_ENTRADA(Ls_MsgColector);
+                    if(Ls_MensajeMQ != "")
+                    {
+                        mqSeries.Escribe("Mensaje Enviado: " + Ls_MensajeMQ);
+
+                        if (mqSeries.MQEnviarMsg(mqSeries.queueManager, Gs_MQQueueEscritura, mqSeries.queue, mqSeries.queueMessage, Ls_MensajeMQ, strReplyToMQ))
+                        {
+                            sMensajeEnvio = (sEnvioConse + 1).ToString();
+
+                            if(Int32.Parse(sMensajeEnvio) > 9)
+                            {
+                                sMensajeEnvio = ((char)(1)).ToString();
+                            }
+                            valorTk14Config.SetParameter("TKCONSECUTIVO", sMensajeEnvio);
+                        }
+                        else
+                        {
+                            mqSeries.Escribe("Se ha presentado un error al escribir la solicitud en la MQ QUEUE:");
+                        }
+                    }
+                    else
+                    {
+                        mqSeries.Escribe("Se ha presentado un error durante el armado del formato PS9 funcion ASTA_ENTRADA.Colector: " + Ls_MsgColector);
+                    }
                 }
+                else
+                {
+                    mqSeries.Escribe("Se ha presentado un error al armar el Layout TKT14. No existe longitud en el Colector");
+                }
+
+                mqSeries.MQDesconectar(mqSeries.queueManager, mqSeries.queue);
+
+                mqSeries.Escribe("Envio de solicitures TKT -> Host Terminado");
+                mqSeries.Escribe("Solicitudes enviadas a MQ: " + sMensajeEnvio);
   
 
                 //If MQConectar(mqSession, Gs_MQManager, mqManager) Then
