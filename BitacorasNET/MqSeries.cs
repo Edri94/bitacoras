@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BitacorasNET.Configuracion.MqSeries;
+using System.IO;
 
 namespace BitacorasNET
 {
@@ -215,7 +216,18 @@ namespace BitacorasNET
 
         public void Escribe(string vData)
         {
-            Console.WriteLine(vData);
+            //Archivo = strlogFilePath & Format(Now(), "yyyyMMdd") & "-" & strlogFileName
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (Mb_GrabaLog)
+            {
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "")))
+                {
+                    Console.WriteLine(vData);
+                    outputFile.WriteLine(vData);
+                }
+
+            }
         }
     }
 }
